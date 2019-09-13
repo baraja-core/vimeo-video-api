@@ -37,7 +37,7 @@ class VimeoVideoAPI
 			curl_setopt($ch = curl_init(), CURLOPT_URL, 'https://vimeo.com/api/oembed.json?url=https:%2F%2Fvimeo.com%2F' . $token);
 			curl_setopt($ch, CURLOPT_REFERER, $this->referer);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			$cache[$token] = new VideoInfo(json_decode(curl_exec($ch), true));
+			$cache[$token] = new VideoInfo(json_decode(curl_exec($ch), true) ?? []);
 			curl_close($ch);
 		}
 
