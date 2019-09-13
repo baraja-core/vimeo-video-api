@@ -1,0 +1,21 @@
+{
+	"name": "baraja-core/vimeo-video-api",
+	"description": "Simple API wrapper for Vimeo.",
+	"homepage": "https://github.com/baraja-core/vimeo-video-api",
+	"authors": [
+		{
+			"name": "Jan Barášek",
+			"homepage": "https://baraja.cz"
+		}
+	],
+	"require": {
+		"php": ">=7.1.0",
+		"ext-curl": "*"
+	},
+	"autoload": {
+		"classmap": [
+			"src/"
+		]
+	},
+	"minimum-stability": "stable"
+}
