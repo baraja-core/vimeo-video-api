@@ -19,7 +19,7 @@ class VimeoVideoAPI
 	public function __construct(string $referer)
 	{
 		if (!preg_match('/^https?:\/\/[a-z0-9-]+\.(?:[a-z0-9-]+\.?){1,}/', $referer)) {
-			trigger_error('Referer should be valid domain.');
+			VimeoException::invalidReferer($referer);
 		}
 
 		$this->referer = $referer;
@@ -33,11 +33,19 @@ class VimeoVideoAPI
 	{
 		static $cache = [];
 
+		if ($token < 10) {
+			VimeoException::videoDoesNotExist($token);
+		}
+
 		if (isset($cache[$token]) === false) {
-			curl_setopt($ch = curl_init(), CURLOPT_URL, 'https://vimeo.com/api/oembed.json?url=https:%2F%2Fvimeo.com%2F' . $token);
+			$url = 'https://vimeo.com/api/oembed.json?url=https:%2F%2Fvimeo.com%2F' . $token;
+			curl_setopt($ch = curl_init(), CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_REFERER, $this->referer);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			$cache[$token] = new VideoInfo(json_decode(curl_exec($ch), true) ?? []);
+			if (($exec = curl_exec($ch)) === false) {
+				VimeoException::emptyResponse($url);
+			}
+			$cache[$token] = new VideoInfo(json_decode($exec, true) ?? []);
 			curl_close($ch);
 		}
 
