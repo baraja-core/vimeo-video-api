@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Baraja\VimeoAPI;
 
 
-class VideoInfo
+final class VideoInfo
 {
 
 	/**
@@ -46,19 +46,13 @@ class VideoInfo
 	 */
 	private $title;
 
-	/**
-	 * @var string|null
-	 */
+	/** @var string|null */
 	private $authorName;
 
-	/**
-	 * @var string|null
-	 */
+	/** @var string|null */
 	private $authorUrl;
 
-	/**
-	 * @var bool|null
-	 */
+	/** @var bool|null */
 	private $isPlus;
 
 	/**
@@ -94,9 +88,7 @@ class VideoInfo
 	 */
 	private $duration;
 
-	/**
-	 * @var string|null
-	 */
+	/** @var string|null */
 	private $description;
 
 	/**
@@ -147,10 +139,9 @@ class VideoInfo
 	 */
 	private $videoId;
 
-	/**
-	 * @var string|null
-	 */
+	/** @var string|null */
 	private $uri;
+
 
 	/**
 	 * @param mixed[] $data
@@ -182,6 +173,7 @@ class VideoInfo
 		$this->uri = $data['uri'] ?? null;
 	}
 
+
 	/**
 	 * @return mixed[]
 	 */
@@ -189,6 +181,7 @@ class VideoInfo
 	{
 		return $this->haystack ?? [];
 	}
+
 
 	/**
 	 * @return string|null
@@ -198,6 +191,7 @@ class VideoInfo
 		return $this->type;
 	}
 
+
 	/**
 	 * @return string|null
 	 */
@@ -205,6 +199,7 @@ class VideoInfo
 	{
 		return $this->version;
 	}
+
 
 	/**
 	 * @return string|null
@@ -214,6 +209,7 @@ class VideoInfo
 		return $this->providerName;
 	}
 
+
 	/**
 	 * @return string|null
 	 */
@@ -221,6 +217,7 @@ class VideoInfo
 	{
 		return $this->providerUrl;
 	}
+
 
 	/**
 	 * @return string|null
@@ -230,6 +227,7 @@ class VideoInfo
 		return $this->title;
 	}
 
+
 	/**
 	 * @return string|null
 	 */
@@ -237,6 +235,7 @@ class VideoInfo
 	{
 		return $this->authorName;
 	}
+
 
 	/**
 	 * @return string|null
@@ -246,6 +245,7 @@ class VideoInfo
 		return $this->authorUrl;
 	}
 
+
 	/**
 	 * @return bool|null
 	 */
@@ -253,6 +253,7 @@ class VideoInfo
 	{
 		return $this->isPlus;
 	}
+
 
 	/**
 	 * @return string|null
@@ -262,6 +263,7 @@ class VideoInfo
 		return $this->accountType;
 	}
 
+
 	/**
 	 * @return string|null
 	 */
@@ -269,6 +271,7 @@ class VideoInfo
 	{
 		return $this->html;
 	}
+
 
 	/**
 	 * @return int|null
@@ -278,6 +281,7 @@ class VideoInfo
 		return $this->width;
 	}
 
+
 	/**
 	 * @return int|null
 	 */
@@ -285,6 +289,7 @@ class VideoInfo
 	{
 		return $this->height;
 	}
+
 
 	/**
 	 * @return int|null
@@ -294,6 +299,7 @@ class VideoInfo
 		return $this->duration;
 	}
 
+
 	/**
 	 * @return string|null
 	 */
@@ -301,6 +307,7 @@ class VideoInfo
 	{
 		return $this->description;
 	}
+
 
 	/**
 	 * @return string|null
@@ -310,6 +317,7 @@ class VideoInfo
 		return $this->thumbnailUrl;
 	}
 
+
 	/**
 	 * @return int|null
 	 */
@@ -317,6 +325,7 @@ class VideoInfo
 	{
 		return $this->thumbnailWidth;
 	}
+
 
 	/**
 	 * @return int|null
@@ -326,6 +335,7 @@ class VideoInfo
 		return $this->thumbnailHeight;
 	}
 
+
 	/**
 	 * @return string|null
 	 */
@@ -333,6 +343,7 @@ class VideoInfo
 	{
 		return $this->thumbnailUrlWithPlayButton;
 	}
+
 
 	/**
 	 * @return string|null
@@ -342,6 +353,7 @@ class VideoInfo
 		return $this->uploadDate;
 	}
 
+
 	/**
 	 * @return int|null
 	 */
@@ -349,6 +361,7 @@ class VideoInfo
 	{
 		return $this->domainStatusCode;
 	}
+
 
 	/**
 	 * @return int|null
@@ -358,6 +371,7 @@ class VideoInfo
 		return $this->videoId;
 	}
 
+
 	/**
 	 * @return string|null
 	 */
@@ -365,5 +379,4 @@ class VideoInfo
 	{
 		return $this->uri;
 	}
-
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Baraja\VimeoAPI;
 
 
-class VimeoException extends \RuntimeException
+final class VimeoException extends \RuntimeException
 {
 
 	/**
@@ -16,6 +16,7 @@ class VimeoException extends \RuntimeException
 		throw new self('Vimeo video #' . $token . ' does not exist.');
 	}
 
+
 	/**
 	 * @param string $url
 	 */
@@ -24,6 +25,7 @@ class VimeoException extends \RuntimeException
 		throw new self('Vimeo API response is empty.' . "\n" . 'Url: "' . $url . '".');
 	}
 
+
 	/**
 	 * @param string $referer
 	 */
@@ -31,5 +33,4 @@ class VimeoException extends \RuntimeException
 	{
 		throw new self('Referer should be valid domain. Referer "' . $referer . '" given.');
 	}
-
 }

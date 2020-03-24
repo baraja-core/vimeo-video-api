@@ -5,25 +5,25 @@ declare(strict_types=1);
 namespace Baraja\VimeoAPI;
 
 
-class VimeoVideoAPI
+final class VimeoVideoAPI
 {
 
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	private $referer;
+
 
 	/**
 	 * @param string $referer
 	 */
 	public function __construct(string $referer)
 	{
-		if (!preg_match('/^https?:\/\/[a-z0-9-]+\.(?:[a-z0-9-]+\.?){1,}/', $referer)) {
+		if (preg_match('/^https?:\/\/[a-z0-9-]+\.(?:[a-z0-9-]+\.?){1,}/', $referer) === 0) {
 			VimeoException::invalidReferer($referer);
 		}
 
 		$this->referer = $referer;
 	}
+
 
 	/**
 	 * @param int $token
@@ -51,5 +51,4 @@ class VimeoVideoAPI
 
 		return $cache[$token];
 	}
-
 }
