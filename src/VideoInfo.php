@@ -119,10 +119,15 @@ final class VideoInfo
 		$this->thumbnailWidth = $data['thumbnail_width'] ?? null;
 		$this->thumbnailHeight = $data['thumbnail_height'] ?? null;
 		$this->thumbnailUrlWithPlayButton = $data['thumbnail_url_with_play_button'] ?? null;
-		$this->uploadDate = ($uploadDate = $data['upload_date'] ?? null) ? new \DateTime($uploadDate) : null;
 		$this->domainStatusCode = $data['domain_status_code'] ?? null;
 		$this->videoId = $data['video_id'] ?? null;
 		$this->uri = $data['uri'] ?? null;
+
+		try {
+			$this->uploadDate = ($uploadDate = $data['upload_date'] ?? null) ? new \DateTime($uploadDate) : null;
+		} catch (\Throwable $e) {
+			throw new \RuntimeException($e->getMessage(), $e->getCode(), $e);
+		}
 	}
 
 
