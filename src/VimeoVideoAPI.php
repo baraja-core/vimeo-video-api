@@ -12,29 +12,22 @@ final class VimeoVideoAPI
 	private $referer;
 
 
-	/**
-	 * @param string $referer
-	 */
 	public function __construct(string $referer)
 	{
 		if (preg_match('/^https?:\/\/[a-z0-9-]+\.(?:[a-z0-9-]+\.?){1,}/', $referer) === 0) {
-			VimeoException::invalidReferer($referer);
+			throw new \LogicException('Referer should be valid domain. Referer "' . $referer . '" given.');
 		}
 
 		$this->referer = $referer;
 	}
 
 
-	/**
-	 * @param int $token
-	 * @return VideoInfo
-	 */
 	public function getInfo(int $token): VideoInfo
 	{
 		static $cache = [];
 
 		if ($token < 10) {
-			VimeoException::videoDoesNotExist($token);
+			throw new \InvalidArgumentException('Vimeo video #' . $token . ' does not exist.');
 		}
 
 		if (isset($cache[$token]) === false) {
@@ -43,7 +36,7 @@ final class VimeoVideoAPI
 			curl_setopt($ch, CURLOPT_REFERER, $this->referer);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			if (($exec = curl_exec($ch)) === false) {
-				VimeoException::emptyResponse($url);
+				throw new \RuntimeException('Vimeo API response is empty.' . "\n" . 'URL: "' . $url . '".');
 			}
 			$cache[$token] = new VideoInfo(json_decode($exec, true) ?? []);
 			curl_close($ch);

@@ -15,35 +15,19 @@ final class VideoInfo
 	 */
 	private $haystack;
 
-	/**
-	 * @sample "video"
-	 * @var string|null
-	 */
+	/** @var string|null (sample: "video") */
 	private $type;
 
-	/**
-	 * @sample "1.0"
-	 * @var string|null
-	 */
+	/** @var string|null (sample: "1.0") */
 	private $version;
 
-	/**
-	 * @sample "Vimeo"
-	 * @var string|null
-	 */
+	/** @var string|null (sample: "Vimeo") */
 	private $providerName;
 
-	/**
-	 * @sample "https://vimeo.com/"
-	 * @var string|null
-	 */
+	/** @var string|null (sample: "https://vimeo.com/") */
 	private $providerUrl;
 
-	/**
-	 * Name of video.
-	 *
-	 * @var string|null
-	 */
+	/** @var string|null (name of video) */
 	private $title;
 
 	/** @var string|null */
@@ -53,12 +37,9 @@ final class VideoInfo
 	private $authorUrl;
 
 	/** @var bool|null */
-	private $isPlus;
+	private $plus;
 
-	/**
-	 * @sample "pro"
-	 * @var string|null
-	 */
+	/** @var string|null (sample: "pro") */
 	private $accountType;
 
 	/**
@@ -68,24 +49,13 @@ final class VideoInfo
 	 */
 	private $html;
 
-	/**
-	 * @sample 640
-	 * @var int|null
-	 */
+	/** @var int|null (sample: 640) */
 	private $width;
 
-	/**
-	 * @sample 360
-	 * @var int|null
-	 */
+	/** @var int|null (sample: 360) */
 	private $height;
 
-	/**
-	 * Duration of video in seconds.
-	 *
-	 * @sample 903
-	 * @var int|null
-	 */
+	/** @var int|null (duration of video in seconds) */
 	private $duration;
 
 	/** @var string|null */
@@ -99,37 +69,19 @@ final class VideoInfo
 	 */
 	private $thumbnailUrl;
 
-	/**
-	 * @sample 640
-	 * @var int|null
-	 */
+	/** @var int|null (sample: 640) */
 	private $thumbnailWidth;
 
-	/**
-	 * @sample 360
-	 * @var int|null
-	 */
+	/** @var int|null (sample: 300) */
 	private $thumbnailHeight;
 
-	/**
-	 * URL to image.
-	 *
-	 * @var string|null
-	 */
+	/** @var string|null (absolute URL to image) */
 	private $thumbnailUrlWithPlayButton;
 
-	/**
-	 * Date in format: "Y-m-d H:i:s"
-	 *
-	 * @sample "2017-09-15 20:47:13"
-	 * @var string|null
-	 */
+	/** @var \DateTime|null */
 	private $uploadDate;
 
-	/**
-	 * @sample 200
-	 * @var int|null
-	 */
+	/** @var int|null (sample: 200) */
 	private $domainStatusCode;
 
 	/**
@@ -156,7 +108,7 @@ final class VideoInfo
 		$this->title = $data['title'] ?? null;
 		$this->authorName = $data['author_name'] ?? null;
 		$this->authorUrl = $data['author_url'] ?? null;
-		$this->isPlus = isset($data['is_plus']) ? (bool) $data['is_plus'] : null;
+		$this->plus = isset($data['is_plus']) ? (bool) $data['is_plus'] : null;
 		$this->accountType = $data['account_type'] ?? null;
 		$this->html = $data['html'] ?? null;
 		$this->width = $data['width'] ?? null;
@@ -167,7 +119,7 @@ final class VideoInfo
 		$this->thumbnailWidth = $data['thumbnail_width'] ?? null;
 		$this->thumbnailHeight = $data['thumbnail_height'] ?? null;
 		$this->thumbnailUrlWithPlayButton = $data['thumbnail_url_with_play_button'] ?? null;
-		$this->uploadDate = $data['upload_date'] ?? null;
+		$this->uploadDate = ($uploadDate = $data['upload_date'] ?? null) ? new \DateTime($uploadDate) : null;
 		$this->domainStatusCode = $data['domain_status_code'] ?? null;
 		$this->videoId = $data['video_id'] ?? null;
 		$this->uri = $data['uri'] ?? null;
@@ -183,198 +135,132 @@ final class VideoInfo
 	}
 
 
-	/**
-	 * @return string|null
-	 */
 	public function getType(): ?string
 	{
 		return $this->type;
 	}
 
 
-	/**
-	 * @return string|null
-	 */
 	public function getVersion(): ?string
 	{
 		return $this->version;
 	}
 
 
-	/**
-	 * @return string|null
-	 */
 	public function getProviderName(): ?string
 	{
 		return $this->providerName;
 	}
 
 
-	/**
-	 * @return string|null
-	 */
 	public function getProviderUrl(): ?string
 	{
 		return $this->providerUrl;
 	}
 
 
-	/**
-	 * @return string|null
-	 */
 	public function getTitle(): ?string
 	{
 		return $this->title;
 	}
 
 
-	/**
-	 * @return string|null
-	 */
 	public function getAuthorName(): ?string
 	{
 		return $this->authorName;
 	}
 
 
-	/**
-	 * @return string|null
-	 */
 	public function getAuthorUrl(): ?string
 	{
 		return $this->authorUrl;
 	}
 
 
-	/**
-	 * @return bool|null
-	 */
-	public function getisPlus(): ?bool
+	public function isPlus(): ?bool
 	{
-		return $this->isPlus;
+		return $this->plus;
 	}
 
 
-	/**
-	 * @return string|null
-	 */
 	public function getAccountType(): ?string
 	{
 		return $this->accountType;
 	}
 
 
-	/**
-	 * @return string|null
-	 */
 	public function getHtml(): ?string
 	{
 		return $this->html;
 	}
 
 
-	/**
-	 * @return int|null
-	 */
 	public function getWidth(): ?int
 	{
 		return $this->width;
 	}
 
 
-	/**
-	 * @return int|null
-	 */
 	public function getHeight(): ?int
 	{
 		return $this->height;
 	}
 
 
-	/**
-	 * @return int|null
-	 */
 	public function getDuration(): ?int
 	{
 		return $this->duration;
 	}
 
 
-	/**
-	 * @return string|null
-	 */
 	public function getDescription(): ?string
 	{
 		return $this->description;
 	}
 
 
-	/**
-	 * @return string|null
-	 */
 	public function getThumbnailUrl(): ?string
 	{
 		return $this->thumbnailUrl;
 	}
 
 
-	/**
-	 * @return int|null
-	 */
 	public function getThumbnailWidth(): ?int
 	{
 		return $this->thumbnailWidth;
 	}
 
 
-	/**
-	 * @return int|null
-	 */
 	public function getThumbnailHeight(): ?int
 	{
 		return $this->thumbnailHeight;
 	}
 
 
-	/**
-	 * @return string|null
-	 */
 	public function getThumbnailUrlWithPlayButton(): ?string
 	{
 		return $this->thumbnailUrlWithPlayButton;
 	}
 
 
-	/**
-	 * @return string|null
-	 */
-	public function getUploadDate(): ?string
+	public function getUploadDate(): ?\DateTime
 	{
 		return $this->uploadDate;
 	}
 
 
-	/**
-	 * @return int|null
-	 */
 	public function getDomainStatusCode(): ?int
 	{
 		return $this->domainStatusCode;
 	}
 
 
-	/**
-	 * @return int|null
-	 */
 	public function getVideoId(): ?int
 	{
 		return $this->videoId;
 	}
 
 
-	/**
-	 * @return string|null
-	 */
 	public function getUri(): ?string
 	{
 		return $this->uri;
