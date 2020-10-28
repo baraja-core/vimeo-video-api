@@ -13,86 +13,69 @@ final class VideoInfo
 	 *
 	 * @var mixed[]
 	 */
-	private $haystack;
+	private array $haystack;
 
 	/** @var string|null (sample: "video") */
-	private $type;
+	private ?string $type;
 
 	/** @var string|null (sample: "1.0") */
-	private $version;
+	private ?string $version;
 
 	/** @var string|null (sample: "Vimeo") */
-	private $providerName;
+	private ?string $providerName;
 
 	/** @var string|null (sample: "https://vimeo.com/") */
-	private $providerUrl;
+	private ?string $providerUrl;
 
 	/** @var string|null (name of video) */
-	private $title;
+	private ?string $title;
 
-	/** @var string|null */
-	private $authorName;
+	private ?string $authorName;
 
-	/** @var string|null */
-	private $authorUrl;
+	private ?string $authorUrl;
 
-	/** @var bool|null */
-	private $plus;
+	private ?bool $plus;
 
 	/** @var string|null (sample: "pro") */
-	private $accountType;
+	private ?string $accountType;
 
-	/**
-	 * Full valid HTML code (iframe) with player.
-	 *
-	 * @var string|null
-	 */
-	private $html;
+	/** Full valid HTML code (iframe) with player. */
+	private ?string $html;
 
 	/** @var int|null (sample: 640) */
-	private $width;
+	private ?int $width;
 
 	/** @var int|null (sample: 360) */
-	private $height;
+	private ?int $height;
 
 	/** @var int|null (duration of video in seconds) */
-	private $duration;
+	private ?int $duration;
 
-	/** @var string|null */
-	private $description;
+	private ?string $description;
 
 	/**
 	 * Absolute URL to Vimeo server.
 	 * Thumbnail do not contain token, so you can use this URL safely in your application and token will keep secret.
-	 *
-	 * @var string|null
 	 */
-	private $thumbnailUrl;
+	private ?string $thumbnailUrl;
 
 	/** @var int|null (sample: 640) */
-	private $thumbnailWidth;
+	private ?int $thumbnailWidth;
 
 	/** @var int|null (sample: 300) */
-	private $thumbnailHeight;
+	private ?int $thumbnailHeight;
 
 	/** @var string|null (absolute URL to image) */
-	private $thumbnailUrlWithPlayButton;
+	private ?string $thumbnailUrlWithPlayButton;
 
-	/** @var \DateTime|null */
-	private $uploadDate;
+	private ?\DateTime $uploadDate;
 
 	/** @var int|null (sample: 200) */
-	private $domainStatusCode;
+	private ?int $domainStatusCode;
 
-	/**
-	 * Video ID is token.
-	 *
-	 * @var int|null
-	 */
-	private $videoId;
+	private ?int $videoId;
 
-	/** @var string|null */
-	private $uri;
+	private ?string $uri;
 
 
 	/**

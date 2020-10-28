@@ -7,9 +7,7 @@ namespace Baraja\VimeoAPI;
 
 final class VimeoVideoAPI
 {
-
-	/** @var string|null */
-	private $referer;
+	private ?string $referer;
 
 
 	public function __construct(?string $referer = null)
@@ -23,7 +21,6 @@ final class VimeoVideoAPI
 	public function getInfo(int $token): VideoInfo
 	{
 		static $cache = [];
-
 		if ($token < 10) {
 			throw new \InvalidArgumentException('Vimeo video #' . $token . ' does not exist.');
 		}
