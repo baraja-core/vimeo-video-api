@@ -7,7 +7,7 @@ namespace Baraja\VimeoAPI;
 
 final class VimeoVideoAPI
 {
-	private ?string $referer;
+	private ?string $referer = null;
 
 
 	public function __construct(?string $referer = null)
