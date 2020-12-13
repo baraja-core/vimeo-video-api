@@ -32,7 +32,7 @@ final class VimeoVideoAPI
 			if (($exec = curl_exec($ch)) === false) {
 				throw new \RuntimeException('Vimeo API response is empty.' . "\n" . 'URL: "' . $url . '".');
 			}
-			$cache[$token] = new VideoInfo(json_decode($exec, true) ?? []);
+			$cache[$token] = new VideoInfo(json_decode((string) $exec, true) ?? []);
 			curl_close($ch);
 		}
 
