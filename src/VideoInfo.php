@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Baraja\VimeoAPI;
 
 
+use DateTimeImmutable;
+
 final class VideoInfo
 {
 
@@ -68,7 +70,7 @@ final class VideoInfo
 	/** @var string|null (absolute URL to image) */
 	private ?string $thumbnailUrlWithPlayButton;
 
-	private ?\DateTime $uploadDate;
+	private ?DateTimeImmutable $uploadDate;
 
 	/** @var int|null (sample: 200) */
 	private ?int $domainStatusCode;
@@ -107,7 +109,7 @@ final class VideoInfo
 		$this->uri = $data['uri'] ?? null;
 
 		try {
-			$this->uploadDate = ($uploadDate = $data['upload_date'] ?? null) ? new \DateTime($uploadDate) : null;
+			$this->uploadDate = ($uploadDate = $data['upload_date'] ?? null) ? new DateTimeImmutable($uploadDate) : null;
 		} catch (\Throwable $e) {
 			throw new \RuntimeException($e->getMessage(), $e->getCode(), $e);
 		}
@@ -231,7 +233,7 @@ final class VideoInfo
 	}
 
 
-	public function getUploadDate(): ?\DateTime
+	public function getUploadDate(): ?DateTimeImmutable
 	{
 		return $this->uploadDate;
 	}
