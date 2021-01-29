@@ -109,7 +109,9 @@ final class VideoInfo
 		$this->uri = $data['uri'] ?? null;
 
 		try {
-			$this->uploadDate = ($uploadDate = $data['upload_date'] ?? null) ? new DateTimeImmutable($uploadDate) : null;
+			$this->uploadDate = ($uploadDate = $data['upload_date'] ?? null)
+				? new DateTimeImmutable($uploadDate)
+				: null;
 		} catch (\Throwable $e) {
 			throw new \RuntimeException($e->getMessage(), $e->getCode(), $e);
 		}
