@@ -22,7 +22,7 @@ final class VimeoVideoAPI
 	{
 		static $cache = [];
 		if ($token < 10) {
-			throw new \InvalidArgumentException('Vimeo video #' . $token . ' does not exist.');
+			throw new \InvalidArgumentException(sprintf('Vimeo video #%s does not exist.', $token));
 		}
 		if (isset($cache[$token]) === false) {
 			$url = 'https://vimeo.com/api/oembed.json?url=https:%2F%2Fvimeo.com%2F' . $token;
@@ -30,9 +30,9 @@ final class VimeoVideoAPI
 			curl_setopt($ch, CURLOPT_REFERER, $this->getReferer());
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			if (($exec = curl_exec($ch)) === false) {
-				throw new \RuntimeException('Vimeo API response is empty.' . "\n" . 'URL: "' . $url . '".');
+				throw new \RuntimeException('Vimeo API response is empty.' . "\n" . sprintf('URL: "%s".', $url));
 			}
-			$cache[$token] = new VideoInfo(json_decode((string) $exec, true) ?? []);
+			$cache[$token] = new VideoInfo(json_decode((string) $exec, true, 512, JSON_THROW_ON_ERROR) ?? []);
 			curl_close($ch);
 		}
 
@@ -49,7 +49,7 @@ final class VimeoVideoAPI
 	public function setReferer(string $referer): self
 	{
 		if (preg_match('/^https?:\/\/[a-z0-9-]+\.(?:[a-z0-9-]+\.?){1,}/', $referer) === 0) {
-			throw new \LogicException('Referer must be valid domain, but string "' . $referer . '" given.');
+			throw new \LogicException(sprintf('Referer must be valid domain, but string "%s" given.', $referer));
 		}
 		$this->referer = $referer;
 

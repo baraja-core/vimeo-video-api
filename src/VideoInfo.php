@@ -9,11 +9,10 @@ use DateTimeImmutable;
 
 final class VideoInfo
 {
-
 	/**
 	 * All original data from API as array.
 	 *
-	 * @var mixed[]
+	 * @var array<string, mixed>
 	 */
 	private array $haystack;
 
@@ -81,7 +80,7 @@ final class VideoInfo
 
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<string, mixed> $data
 	 */
 	public function __construct(array $data)
 	{
@@ -107,19 +106,12 @@ final class VideoInfo
 		$this->domainStatusCode = $data['domain_status_code'] ?? null;
 		$this->videoId = $data['video_id'] ?? null;
 		$this->uri = $data['uri'] ?? null;
-
-		try {
-			$this->uploadDate = ($uploadDate = $data['upload_date'] ?? null)
-				? new DateTimeImmutable($uploadDate)
-				: null;
-		} catch (\Throwable $e) {
-			throw new \RuntimeException($e->getMessage(), $e->getCode(), $e);
-		}
+		$this->uploadDate = isset($data['upload_date']) ? new DateTimeImmutable($data['upload_date']) : null;
 	}
 
 
 	/**
-	 * @return mixed[]
+	 * @return array<string, mixed>
 	 */
 	public function getHaystack(): array
 	{
